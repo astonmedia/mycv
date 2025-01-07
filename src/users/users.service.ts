@@ -12,8 +12,32 @@ export class UsersService {
     return this.repo.save(user);
   }
 
-  getAllUsers() {
-    const users = this.repo.find();
-    return users;
+  findOne(id: number) {
+    const user = this.repo.findOneBy({ id });
+    if (!user) {
+      throw new Error('User not found');
+    }
+    return user;
+  }
+
+  find() {
+    return this.repo.find();
+  }
+
+  async update(id: number, attrs: Partial<User>) {
+    const user = await this.findOne(id);
+    if (!user) {
+      throw new Error('User not found');
+    }
+    Object.assign(user, attrs);
+    return this.repo.save(user);
+  }
+
+  async remove(id: number) {
+    const user = await this.findOne(id);
+    if (!user) {
+      throw new Error('User not found');
+    }
+    return this.repo.remove(user);
   }
 }
