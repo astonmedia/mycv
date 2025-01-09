@@ -15,7 +15,7 @@ GET http://localhost:3000/auth/users/4
 
 
 ### Delete user by Id
-DELETE http://localhost:3000/auth/users/30
+DELETE http://localhost:3000/auth/users/6
 
 ### Update user by ID
 PATCH http://localhost:3000/auth/users/4
