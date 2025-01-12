@@ -7,6 +7,7 @@ import {
   Param,
   Patch,
   Post,
+  Session,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UsersService } from './users.service';
@@ -22,9 +23,15 @@ export class UsersController {
     private usersService: UsersService,
     private authService: AuthService,
   ) {}
+
   @Post('/signup')
   createUser(@Body() body: CreateUserDto) {
-    this.authService.signup(body.email, body.password);
+    return this.authService.signup(body.email, body.password);
+  }
+
+  @Post('/signin')
+  signin(@Body() body: CreateUserDto) {
+    return this.authService.signin(body.email, body.password);
   }
 
   @Get('/users/:id')
